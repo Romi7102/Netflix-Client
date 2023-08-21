@@ -1,6 +1,7 @@
 import React from "react";
 import ContentCard from "../ContentCard/ContentCard";
 import { isEmpty } from "lodash";
+import ContentCarousel from "../ContentCarousel/ContentCarousel";
 
 const FeaturedContent = ({ data }) => {
   if (isEmpty(data)) {
@@ -14,11 +15,13 @@ const FeaturedContent = ({ data }) => {
         <p className="text-white text-md md:text-xl lg:text-2xl font-semibold">
           {data.name}
         </p>
-        <div className="grid grid-cols-4 gap-2">
+
+        <ContentCarousel id={data._id}>
           {data.contentList.map((content) => (
-            <ContentCard key={content._id} data={content}></ContentCard>
+              <ContentCard key={content._id} data={content}></ContentCard>
           ))}
-        </div>
+        </ContentCarousel>
+
       </div>
     </div>
   );

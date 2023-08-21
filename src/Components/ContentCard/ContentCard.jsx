@@ -15,7 +15,7 @@ const ContentCard = ({data}) => {
             sm:group-hover:opacity-0
             delay-300
             w-full
-            h-[12vw]' 
+            h-[12vw]'
             src={data.imgThumb} alt="Thunbnail" />
             <div className='
                 opacity-0
