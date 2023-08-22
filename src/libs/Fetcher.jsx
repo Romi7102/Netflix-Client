@@ -1,5 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
-const fetcher = (url) => axios.get(url).then(res => res.data);
+const { token } = JSON.parse(localStorage.getItem("userInfo"));
+const headers = { headers: { authorization: token } };
+
+const fetcher = (url) => axios.get(url, headers).then((res) => res.data);
 
 export default fetcher;

@@ -10,13 +10,13 @@ const FeaturedContent = ({ data }) => {
   }
   console.log(data.contentList);
   return (
-    <div className="px-4 md-px-12 mt-4 space-y-8">
+    <div className="px-4 md-px-12 mt-4 space-y-8 w-screen overflow-x-hidden">
       <div>
         <p className="text-white text-md md:text-xl lg:text-2xl font-semibold">
           {data.name}
         </p>
 
-        <ContentCarousel id={data._id}>
+        <ContentCarousel className="" id={data._id}>
           {data.contentList.map((content) => (
               <ContentCard key={content._id} data={content}></ContentCard>
           ))}

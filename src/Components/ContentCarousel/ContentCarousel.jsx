@@ -3,7 +3,7 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 const ContentCarousel = ({ children, id }) => {
   const mappedChildren = Children.map(children, (child) => (
-    <div className="inline-block h-full w-[24vw] p-2 cursor-pointer transform">
+    <div className="inline-block h-full w-[24vw] p-2 cursor-pointer">
       {child}
     </div>
   ));
@@ -22,11 +22,11 @@ const ContentCarousel = ({ children, id }) => {
 
   return (
     <>
-      <div className="relative flex items-center overflow-y-visible">
+      <div className="relative flex items-center ">
         <MdChevronLeft className="opacity-50 cursor-pointer hover:opacity-100 invisible md:visible" onClick={slideLeft} size={40} />
         <div
           id={id}
-          className="scroll-smooth w-full h-full overflow-x-scroll overflow-y-hidden whitespace-nowrap scrollbar-hide"
+          className="scroll-smooth w-full h-full overflow-x-scroll whitespace-nowrap scrollbar-hide"
         >
           {mappedChildren}
         </div>
