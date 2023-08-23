@@ -24,11 +24,11 @@ const Navbar = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-    return () =>{
-      window.removeEventListener('scroll', handleScroll);
-    }
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const toggleMobileMenu = useCallback(() => {
@@ -41,7 +41,11 @@ const Navbar = () => {
   return (
     <>
       <nav className="w-full fixed z-40">
-        <div className={`px-4 md:px-16 py-6 flex flex-row items-center transition duration-500 ${showBackground ? `bg-zinc-900 bg-opacity-90` : ``}`}>
+        <div
+          className={`px-4 md:px-16 py-6 flex flex-row items-center transition duration-500 ${
+            showBackground ? `bg-zinc-900 bg-opacity-90` : ``
+          }`}
+        >
           <img src={logo} className="h-4 lg:h-7" />
           <div className="flex-row ml-8 gap-7 hidden lg:flex">
             <NavbarItem label="Home" />
@@ -70,14 +74,12 @@ const Navbar = () => {
               <BsBell />
             </div>
 
-            <div
-              onClick={toggleAccountMenu}
-              className="flex flex-row items-center gap-2 cursor-pointer relative"
-            >
+            <div className="flex flex-row items-center gap-2 cursor-pointer relative">
               <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
-                <img src={avatar} alt="" />
+                <img onClick={toggleAccountMenu} src={avatar} alt="" />
               </div>
               <BsChevronDown
+                onClick={toggleAccountMenu}
                 className={`text-white transition ${
                   showAccountMenu ? `rotate-180` : `rotate-0`
                 }`}

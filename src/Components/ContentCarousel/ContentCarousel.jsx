@@ -23,14 +23,14 @@ const ContentCarousel = ({ children, id }) => {
   return (
     <>
       <div className="relative flex items-center ">
-        <MdChevronLeft className="opacity-50 cursor-pointer hover:opacity-100 invisible md:visible" onClick={slideLeft} size={40} />
+        <MdChevronLeft className="absolute z-50 opacity-50 left-0 cursor-pointer hover:opacity-100 invisible md:visible" onClick={slideLeft} size={40} />
         <div
           id={id}
-          className="scroll-smooth w-full h-full overflow-x-scroll whitespace-nowrap scrollbar-hide"
+          className="scroll-smooth w-full h-full overflow-visible whitespace-nowrap scrollbar-hide"
         >
           {mappedChildren}
         </div>
-        <MdChevronRight className="opacity-50 cursor-pointer hover:opacity-100 invisible md:visible" onClick={slideRight} size={40} />
+        <MdChevronRight className="absolute right-0 opacity-50 cursor-pointer hover:opacity-100 invisible md:visible" onClick={slideRight} size={40} />
       </div>
     </>
   );

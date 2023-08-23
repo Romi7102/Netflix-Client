@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import Input from "../../Components/Input/Input";
 import { MdArrowForwardIos } from "react-icons/md";
+import { Store } from "../../Context/StoreProvider";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { USER_SIGNIN } from "../../Reducers/Actions";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +14,9 @@ const RegisterPage = () => {
   const [step, setStep] = useState("email");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { userInfo } = state;
 
   const nextStep = () => {
     if (step == "email") {
@@ -22,6 +29,36 @@ const RegisterPage = () => {
       }
     }
   };
+
+  const submitHandler = async () => {
+    if (!email || !password) {
+      return;
+    }
+    try {
+      const { data } = await axios.post("/users/signup", {
+        email,
+        password,
+      });
+      await ctxDispatch({ type: USER_SIGNIN, payload: data });
+    } catch (error) {
+      console.log(error);
+      toast.error("Somthing went wrong", {
+        theme: "colored",
+        hideProgressBar: true,
+        autoClose: 3000,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [state]);
 
   const validEmailHandler = (e) => {
     setEmail(e.target.value);
@@ -103,7 +140,7 @@ const RegisterPage = () => {
             )}
 
             <button
-              onClick={nextStep}
+              onClick={step == 'password' ? submitHandler : nextStep}
               className="bg-red-600 p-3 text-2xl text-white rounded-md hover:bg-red-700 transition flex flex-row justify-center items-center"
             >
               <span>{step == "email" ? "Next" : "Get Started"}</span>

@@ -1,35 +1,46 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState , useEffect } from "react";
 import logo from "../../assets/logo.svg";
 import Input from "../../Components/Input/Input";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../../Context/StoreProvider";
+import { USER_SIGNIN } from "../../Reducers/Actions";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
 
   const submitHandler = async () => {
-    try{
-        const {data} = await axios.post("/users/signin", {email, password});
-        ctxDispatch({type: USER_SIGNIN, payload: data});
-        navigate('/');
+    try {
+      const { data } = await axios.post("/users/signin", {
+        email,
+        password,
+      });
+      console.log(data);
+      await ctxDispatch({ type: USER_SIGNIN, payload: data });
+      // navigate("/");
+    } catch (error) {
+      toast.error("Invalid Credentials", {
+        theme: "colored",
+        hideProgressBar: true,
+        autoClose: 3000,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
     }
-    catch(error){
-        toast.error(error.message, {
-            theme: "colored",
-            hideProgressBar: true,
-            autoClose: 3000,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-          });
+  };
+  useEffect(() => {
+    if(userInfo){
+      navigate("/");
     }
-}
-
+  },[state]);
 
   return (
     <>
@@ -68,7 +79,10 @@ const LoginPage = () => {
                   value={password}
                 />
               </div>
-              <button className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
+              <button
+                className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
+                onClick={submitHandler}
+              >
                 Sign In
               </button>
               <p className="text-neutral-500 mt-12">

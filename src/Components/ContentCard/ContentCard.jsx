@@ -3,7 +3,7 @@ import { BsFillPlayFill } from 'react-icons/bs'
 
 const ContentCard = ({data}) => {
   return (
-    <div className='group bg-zinc-900 col-span-1 relative h-[12vw]'>
+    <div className='group bg-zinc-900 col-span-1 relative h-[12vw] overflow-y-visible'>
         <img className='
             cursor-pointer
             object-cover
@@ -17,10 +17,11 @@ const ContentCard = ({data}) => {
             w-full
             h-[12vw]'
             src={data.imgThumb} alt="Thunbnail" />
+
             <div className='
                 opacity-0
+                top-10
                 absolute
-                top-0
                 transition
                 duration-200
                 z-10
@@ -33,7 +34,7 @@ const ContentCard = ({data}) => {
                 group-hover:-translate-y-[6vw]
                 group-hover:translate-x-[2vw]
                 group-hover:opacity-100'>
-
+                    
                     <img src={data.imgThumb} alt="Thumnail" 
                     className='
                         cursor-pointer

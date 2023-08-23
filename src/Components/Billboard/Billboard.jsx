@@ -4,10 +4,11 @@ import YouTube from "react-youtube";
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 
 const Billboard = () => {
-  const { data } = useBillboard();
+  const { data, isLoading } = useBillboard();
+  
   return (
     <>
-      <div className="relative h-[56.25vw] ">
+      <div className="relative h-[85vh] ">
         <img
           className="w-full h-full absolute object-cover"
           src={data?.imgThumb}

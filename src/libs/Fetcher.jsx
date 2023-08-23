@@ -1,8 +1,20 @@
 import axios from "axios";
 
-const { token } = JSON.parse(localStorage.getItem("userInfo"));
-const headers = { headers: { authorization: token } };
 
-const fetcher = (url) => axios.get(url, headers).then((res) => res.data);
+const getHeaders = () =>{
+  const userInfo = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null;
+  const headers = userInfo && { headers: { authorization: userInfo.token } };
+  return headers;
+}
+
+const fetcher = async (url) =>{
+  const headers = getHeaders();
+  return headers
+    ? (await axios.get(url, headers)).data
+    : (await axios.get(url)).data
+
+}
 
 export default fetcher;

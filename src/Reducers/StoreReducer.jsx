@@ -1,4 +1,4 @@
-import { USER_SIGNIN } from "./Actions";
+import { USER_SIGNIN , USER_SIGNOUT } from "./Actions";
 import axios from "axios";
 
 export const StoreReducer = (state, { type, payload }) => {

@@ -7,17 +7,19 @@ import { Routes, Route, BrowserRouter, Router } from "react-router-dom";
 import LoginPage from "./Pages/Login/LoginPage";
 import RegisterPage from "./Pages/Register/RegisterPage";
 import HomePage from "./Pages/HomePage/HomePage";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        {/* <Navbar></Navbar> */}
         <Routes>
           <Route path="/" element={<HomePage></HomePage>}></Route>
           <Route path='/login' element={<LoginPage></LoginPage>}/>
           <Route path='/register' element={<RegisterPage></RegisterPage>}></Route>
         </Routes> 
+        <ToastContainer position="top-left"/>
       </BrowserRouter>
     </>
   );
