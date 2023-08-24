@@ -18,10 +18,6 @@ const HomePage = () => {
     if (!userInfo) {
       navigate("/login");
     }
-    console.log("useEffect");
-    console.log(data);
-    console.log(error);
-    console.log(isLoading);
   }, [state, userInfo]);
 
   return (

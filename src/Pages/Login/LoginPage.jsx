@@ -1,4 +1,4 @@
-import React, { useContext, useState , useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import logo from "../../assets/logo.svg";
 import Input from "../../Components/Input/Input";
 import { useNavigate } from "react-router-dom";
@@ -37,10 +37,10 @@ const LoginPage = () => {
     }
   };
   useEffect(() => {
-    if(userInfo){
+    if (userInfo) {
       navigate("/");
     }
-  },[state]);
+  }, [state]);
 
   return (
     <>
