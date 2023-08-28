@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import Billboard from "../../Components/Billboard/Billboard";
 import useFeaturedContent from "../../Hooks/useFeaturedContent";
-import FeaturedContent from "../../Components/FeaturedContent/FeaturedContent";
+import FeaturedContentCarousel from "../../Components/FeaturedContentCarousel/FeaturedContentCarousel";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../../Context/StoreProvider";
 
@@ -25,13 +25,13 @@ const HomePage = () => {
       <Navbar></Navbar>
       <Billboard></Billboard>
       
-      <div className="pb-40 text-white overflow-hidden">
+      <div>
         {isLoading ? (
           <h1 className="text-white">Loading...</h1>
         ) : error ? (
           <h1 className="text-white">Error...</h1>
         ) : data && 
-          (data.map((f) => (<FeaturedContent key={f._id} data={f}></FeaturedContent>)))
+          (data.map((f) => (<FeaturedContentCarousel key={f._id} data={f}></FeaturedContentCarousel>)))
         }
         
       </div>
