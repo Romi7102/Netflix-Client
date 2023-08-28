@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MoviesPage from "./Pages/MoviesPage/MoviesPage";
 import SeriesPage from "./Pages/SeriesPage/SeriesPage";
+import ContentPlayerPage from "./Pages/ContentPlayerPage/ContentPlayerPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='/register' element={<RegisterPage/>}></Route>
           <Route path='/movies' element={<MoviesPage/>}></Route>
           <Route path='/series' element={<SeriesPage/>}></Route>
+          <Route path='/content' element={<ContentPlayerPage/>}></Route>
         </Routes> 
         <ToastContainer position="top-left"/>
       </BrowserRouter>

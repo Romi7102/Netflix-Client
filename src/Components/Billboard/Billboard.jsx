@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useBillboard from "../../Hooks/useBillboard";
 import YouTube from "react-youtube";
@@ -11,6 +12,7 @@ const Billboard = ({ type }) => {
   const { data } = useBillboard(type); //! use isLoading
   const [titlePosition, setTitlePosition] = useState("lg:translate-y-40");
   const [descriptionOpacity, setDescriptionOpacity] = useState("lg:opacity-0");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -56,7 +58,7 @@ const Billboard = ({ type }) => {
         <div
           className={`flex flex-row items-center gap-3 ${descriptionOpacity} transition-opacity duration-[2300ms]`}
         >
-          <button className="bg-white text-black bg-opacity-100 rounded-md py-1 md:py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold flex flex-row items-center hover:bg-opacity-20">
+          <button onClick={()=> navigate('/content?content=' + data._id)} className="bg-white text-black bg-opacity-100 rounded-md py-1 md:py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold flex flex-row items-center hover:bg-opacity-20">
             <BsFillPlayFill className="mr-1" />
             Play
           </button>

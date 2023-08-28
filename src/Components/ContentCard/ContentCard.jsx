@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { BsFillPlayFill } from "react-icons/bs";
 import { GoMute , GoUnmute} from 'react-icons/go'
 import ReactPlayer from "react-player/youtube";
@@ -7,6 +8,7 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
   const [showVideo, setShowVideo] = useState(false);
   const [muted, setMuted] = useState(true);
   const isMobile = window.innerWidth <= 640;
+  const navigate = useNavigate();
 
   const handleMouseEnter = () => setShowVideo(true);
   const handleMouseLeave = () => {
@@ -87,7 +89,7 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
           </div>
             <div
               className="cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 text-black gap-3"
-              onClick={() => {}}
+              onClick={() => navigate("/content?content=" + content._id)}
             >
               <BsFillPlayFill size={25} />
             </div>
