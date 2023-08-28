@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { BsFillPlayFill } from "react-icons/bs";
+import { GoMute , GoUnmute} from 'react-icons/go'
 import ReactPlayer from "react-player/youtube";
 
 const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
   const [showVideo, setShowVideo] = useState(false);
+  const [muted, setMuted] = useState(true);
   const isMobile = window.innerWidth <= 640;
 
   const handleMouseEnter = () => setShowVideo(true);
@@ -57,27 +59,38 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
             alt=""
           />
           {showVideo && !isMobile && (
-            <ReactPlayer
-              url={content.movie}
-              controls={false}
-              disablePictureInPicture={true}
-              playing
-              width="100%"
-              height="100%"
-              onPlay={hideImageOnPlayHandler}
-              muted
-            />
+            <>
+              <ReactPlayer 
+                url={content.movie}
+                controls={false}
+                disablePictureInPicture={true}
+                playing
+                width="100%"
+                height="100%"
+                onPlay={hideImageOnPlayHandler}
+                muted={muted}
+                volume={0.3}
+                loop={true}
+              />
+              <button 
+                className="absolute flex items-center justify-center left-0 bottom-0 cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full transition hover:bg-neutral-300 text-black lg:ml-4 ml-2 mb-2"
+                onClick={() => setMuted(!muted)}
+              >
+                {muted ? (<GoMute size={25}/>) : (<GoUnmute size={25}/>)}
+              </button>
+            </>
           )}
         </div>
         <div className="z-10 flex flex-col bg-zinc-800 gap-1 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md">
-          <div className="flex flex-row items-center">
+          <div className="flex flex-row items-center space-x-3">
+            
+          </div>
             <div
               className="cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 text-black gap-3"
               onClick={() => {}}
             >
               <BsFillPlayFill size={25} />
             </div>
-          </div>
 
           <div className="flex flex-row gap-2 items-center">
             <p className="text-green-400 font-semibold">{rating}% Match</p>
