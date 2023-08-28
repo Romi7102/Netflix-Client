@@ -1,13 +1,14 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useBillboard from "../../Hooks/useBillboard";
 import YouTube from "react-youtube";
-import { AiOutlineInfoCircle } from 'react-icons/ai'
+import { AiOutlineInfoCircle } from "react-icons/ai";
 import { BsFillPlayFill } from "react-icons/bs";
 import ReactPlayer from "react-player";
+import NetflixIcon from "../../assets/NetflixIcon.svg";
 
-const Billboard = () => {
-  const { data } = useBillboard(); //! use isLoading
+const Billboard = ({ type }) => {
+  const { data } = useBillboard(type); //! use isLoading
   const [titlePosition, setTitlePosition] = useState("lg:translate-y-40");
   const [descriptionOpacity, setDescriptionOpacity] = useState("lg:opacity-0");
 
@@ -37,9 +38,13 @@ const Billboard = () => {
       <div className="absolute inset-0 bg-gradient-to-r w-3/4 from-black opacity-100"></div>
       <div className="absolute inset-0 flex flex-col justify-end w-1/2 px-12 py-16 gap-4 text-white">
         <div
-          className={`transition-transform duration-[800ms] text-sm md:text-2xl lg:text-3xl font-bold ${titlePosition}`}
+          className={`transition-transform duration-[800ms] text-sm md:text-2xl lg:text-3xl font-bold ${titlePosition} space-y-5`}
         >
-          <p>{data?.title}</p>
+          <div className="flex flex-row space-x-3">
+            <img className="w-8" src={NetflixIcon} alt="Icon" />
+            <label className="text-xl">{data?.isSeries ? "Series" : "Movie"}</label>
+          </div>
+          <img className="w-[45%]" src={data?.imgTitle} alt="title" />
         </div>
 
         <div

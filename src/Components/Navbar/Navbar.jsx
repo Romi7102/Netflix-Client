@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NavbarItem from "../NavbarItem/NavbarItem";
 import { BsChevronDown, BsSearch, BsBell } from "react-icons/bs";
 import MobileMenu from "../MobileMenu/MobileMenu";
@@ -14,6 +15,7 @@ const Navbar = () => {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [ShowBackground, setShowBackground] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
+  const navigate = useNavigate();
 
   const searchHandler = () => {
     setSearchActive(!searchActive);
@@ -64,9 +66,9 @@ const Navbar = () => {
         <img className="h-4 lg:h-7" src={logo} alt="" />
 
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
-          <NavbarItem label="Home" />
-          <NavbarItem label="Series" />
-          <NavbarItem label="Movies" />
+          <NavbarItem onClick={()=>navigate('/')} label="Home" />
+          <NavbarItem onClick={()=>navigate('/series')} label="Series" />
+          <NavbarItem onClick={()=>navigate('/movies')} label="Movies" />
         </div>
 
         <div

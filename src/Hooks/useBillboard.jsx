@@ -1,8 +1,8 @@
 import useSWR from "swr";
 import fetcher from "../libs/Fetcher";
 
-const useBillboard = () => {
-  const { data, error, isLoading } = useSWR("/content/random", fetcher, {
+const useBillboard = (type) => {
+  const { data, error, isLoading } = useSWR("/content/" + type, fetcher, {
     revalidateIfStale: false,
     revalidateOnFocus: false,
     revalidateOnReconnect: false
