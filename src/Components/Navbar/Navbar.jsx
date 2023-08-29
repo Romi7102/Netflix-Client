@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import NavbarItem from "../NavbarItem/NavbarItem";
 import { BsChevronDown, BsSearch, BsBell } from "react-icons/bs";
 import MobileMenu from "../MobileMenu/MobileMenu";
@@ -15,6 +15,7 @@ const Navbar = () => {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [ShowBackground, setShowBackground] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
+  const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const searchHandler = () => {
@@ -44,6 +45,10 @@ const Navbar = () => {
     setShowAccountMenu((current) => !current);
   }, []);
 
+  if(pathname == '/login' || pathname == '/register' || pathname == '/content'){
+    return null;
+  }
+
   return (
     <nav className="w-full fixed z-20">
       <div
@@ -66,9 +71,9 @@ const Navbar = () => {
         <img className="h-4 lg:h-7" src={logo} alt="" />
 
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
-          <NavbarItem onClick={()=>navigate('/')} label="Home" />
-          <NavbarItem onClick={()=>navigate('/series')} label="Series" />
-          <NavbarItem onClick={()=>navigate('/movies')} label="Movies" />
+          <NavbarItem onClick={() => navigate("/")} label="Home" />
+          <NavbarItem onClick={() => navigate("/series")} label="Series" />
+          <NavbarItem onClick={() => navigate("/movies")} label="Movies" />
         </div>
 
         <div
@@ -91,6 +96,7 @@ const Navbar = () => {
               className="absolute m-2 left-0 top-0 bottom-0 my-auto z-10 text-gray-200 hover:text-gray-300"
             />
             <input
+            onChange={(e)=> navigate('/search?q=' + e.target.value)}
               type="text"
               className={`bg-black outline outline-1 appearance-none pl-8 py-1 pr-2 outline-white w-full transition-all text-white text-sm ${
                 searchActive ? "visible" : "invisible pointer-events-none"

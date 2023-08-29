@@ -19,7 +19,6 @@ const MoviesPage = () => {
 
   return (
     <>
-      <Navbar></Navbar>
       <Billboard type="movie" />
 
       <div>

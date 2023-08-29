@@ -19,7 +19,6 @@ const SeriesPage = () => {
 
   return (
     <>
-      <Navbar></Navbar>
       <Billboard type="series" />
 
       <div>

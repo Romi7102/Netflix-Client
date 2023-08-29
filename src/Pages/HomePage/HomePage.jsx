@@ -22,7 +22,6 @@ const HomePage = () => {
 
   return (
     <>
-      <Navbar></Navbar>
       <Billboard type="all"></Billboard>
       
       <div>
