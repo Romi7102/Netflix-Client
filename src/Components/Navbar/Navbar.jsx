@@ -7,6 +7,7 @@ import AccountMenu from "../AccountMenu/AccountMenu";
 
 import logo from "./../../assets/logo.svg";
 import userPhoto from "../../assets/avatar.png";
+import { isEmpty } from "lodash";
 
 const TOP_OFFSET = 66;
 
@@ -15,8 +16,11 @@ const Navbar = () => {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [ShowBackground, setShowBackground] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
-  const { pathname } = useLocation();
+  const [redirect, setRedirect] = useState("");
   const navigate = useNavigate();
+
+  const { pathname, search } = useLocation();
+  const params = new URLSearchParams(search);
 
   const searchHandler = () => {
     setSearchActive(!searchActive);
@@ -30,7 +34,6 @@ const Navbar = () => {
         setShowBackground(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -45,7 +48,28 @@ const Navbar = () => {
     setShowAccountMenu((current) => !current);
   }, []);
 
-  if(pathname == '/login' || pathname == '/register' || pathname == '/content'){
+  const onChangeHandler = (e) => {
+    if (isEmpty(e.target.value)) {
+      navigate(redirect);
+      setRedirect("");
+    } else {
+      if (pathname != "/search") {
+        setRedirect(pathname);
+      }
+      navigate(`/search?q=${e.target.value}`);
+
+      // navigate(
+      //   `/search?q=${e.target.value}
+      //   &r=${pathname != "/search" ? pathname : params.get("r")}`
+      // );
+    }
+  };
+
+  if (
+    pathname == "/login" ||
+    pathname == "/register" ||
+    pathname == "/content"
+  ) {
     return null;
   }
 
@@ -96,7 +120,7 @@ const Navbar = () => {
               className="absolute m-2 left-0 top-0 bottom-0 my-auto z-10 text-gray-200 hover:text-gray-300"
             />
             <input
-            onChange={(e)=> navigate('/search?q=' + e.target.value)}
+              onChange={onChangeHandler}
               type="text"
               className={`bg-black outline outline-1 appearance-none pl-8 py-1 pr-2 outline-white w-full transition-all text-white text-sm ${
                 searchActive ? "visible" : "invisible pointer-events-none"

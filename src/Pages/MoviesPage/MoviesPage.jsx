@@ -20,7 +20,6 @@ const MoviesPage = () => {
   return (
     <>
       <Billboard type="movie" />
-
       <div>
         {isLoading ? (
           <h1 className="text-white">Loading...</h1>
