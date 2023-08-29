@@ -23,7 +23,7 @@ const HomePage = () => {
   return (
     <>
       <Navbar></Navbar>
-      <Billboard type="random"></Billboard>
+      <Billboard type="all"></Billboard>
       
       <div>
         {isLoading ? (

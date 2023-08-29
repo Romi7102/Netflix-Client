@@ -9,8 +9,8 @@ const getHeaders = () => {
 };
 
 const fetcher = async (url) => {
-  const headers = getHeaders();
   try{
+    const headers = getHeaders();
     const res = await axios.get(url,headers);
     return res.data
   }catch(err){

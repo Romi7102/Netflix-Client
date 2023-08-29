@@ -9,7 +9,7 @@ import ReactPlayer from "react-player";
 import NetflixIcon from "../../assets/NetflixIcon.svg";
 
 const Billboard = ({ type }) => {
-  const { data } = useBillboard(type); //! use isLoading
+  const { data } = useBillboard(type); //todo use isLoading
   const [titlePosition, setTitlePosition] = useState("lg:translate-y-40");
   const [descriptionOpacity, setDescriptionOpacity] = useState("lg:opacity-0");
   const navigate = useNavigate();
