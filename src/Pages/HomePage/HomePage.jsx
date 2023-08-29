@@ -8,7 +8,7 @@ import { Store } from "../../Context/StoreProvider";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const { data, error, isLoading } = useFeaturedContent();
+  const { data, error, isLoading } = useFeaturedContent("all");
 
   const { state } = useContext(Store);
   const { userInfo } = state;

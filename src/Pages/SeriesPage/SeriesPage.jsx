@@ -5,7 +5,7 @@ import useFeaturedContent from "../../Hooks/useFeaturedContent";
 import FeaturedContentCarousel from "../../Components/FeaturedContentCarousel/FeaturedContentCarousel";
 import { Store } from "../../Context/StoreProvider";
 
-const MoviesPage = () => {
+const SeriesPage = () => {
   const { data, error, isLoading } = useFeaturedContent("series");
 
   const { state } = useContext(Store);
@@ -36,4 +36,4 @@ const MoviesPage = () => {
   );
 };
 
-export default MoviesPage;
+export default SeriesPage;
