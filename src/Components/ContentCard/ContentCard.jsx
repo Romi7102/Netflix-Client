@@ -82,6 +82,7 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
               </button>
             </>
           )}
+          
         </div>
         <div className="z-10 flex flex-col bg-zinc-800 gap-1 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md">
           <div className="flex flex-row items-center space-x-3">
