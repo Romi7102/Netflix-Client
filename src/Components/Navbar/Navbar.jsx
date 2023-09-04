@@ -98,6 +98,7 @@ const Navbar = () => {
           <NavbarItem onClick={() => navigate("/")} label="Home" />
           <NavbarItem onClick={() => navigate("/series")} label="Series" />
           <NavbarItem onClick={() => navigate("/movies")} label="Movies" />
+          <NavbarItem onClick={() => navigate("/mylist")} label="My List" />
         </div>
 
         <div
