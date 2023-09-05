@@ -13,6 +13,7 @@ import MoviesPage from "./Pages/MoviesPage/MoviesPage";
 import SeriesPage from "./Pages/SeriesPage/SeriesPage";
 import ContentPlayerPage from "./Pages/ContentPlayerPage/ContentPlayerPage";
 import SearchPage from "./Pages/SearchPage/SearchPage";
+import MyListPage from "./Pages/MyListPage/MyListPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/series' element={<SeriesPage/>}></Route>
           <Route path='/content' element={<ContentPlayerPage/>}></Route>
           <Route path='/search' element={<SearchPage/>}></Route>
+          <Route path='/mylist' element={<MyListPage/>}></Route>
         </Routes> 
         <ToastContainer position="top-left"/>
       </BrowserRouter>

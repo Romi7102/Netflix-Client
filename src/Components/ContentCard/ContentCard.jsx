@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { BsFillPlayFill } from "react-icons/bs";
 import { GoMute , GoUnmute} from 'react-icons/go'
 import ReactPlayer from "react-player/youtube";
+import FavouriteButton from "../FavouriteButton/FavouriteButton";
 
 const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
   const [showVideo, setShowVideo] = useState(false);
@@ -86,14 +87,14 @@ const ContentCard = ({ content, isFirstInGroup, isLastInGroup }) => {
         </div>
         <div className="z-10 flex flex-col bg-zinc-800 gap-1 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md">
           <div className="flex flex-row items-center space-x-3">
-            
-          </div>
             <div
               className="cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 text-black gap-3"
               onClick={() => navigate("/content?content=" + content._id)}
             >
               <BsFillPlayFill size={25} />
             </div>
+            <FavouriteButton content={content}/>
+          </div>
 
           <div className="flex flex-row gap-2 items-center">
             <p className="text-green-400 font-semibold">{rating}% Match</p>

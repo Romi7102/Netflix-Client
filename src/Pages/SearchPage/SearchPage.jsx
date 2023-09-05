@@ -8,7 +8,6 @@ import NetflixSpinner from "../../Components/NetflixSpinner/NetflixSpinner";
 
 const SearchPage = () => {
   const [query, setQuery] = useState("");
-
   const { search } = useLocation();
   console.log(search);
   const searchParams = new URLSearchParams(search);
@@ -29,7 +28,7 @@ const SearchPage = () => {
         ) : error ? (
           <h1>Error!!!</h1>
         ) : data && (
-          data.contents.map((c) => <div><ContentCard key={c._id} content={c}></ContentCard></div>)
+          data.contents.map((c) => <ContentCard key={c._id} content={c}></ContentCard>)
         )}
       </div>
     </>

@@ -5,14 +5,13 @@ import useFeaturedContent from "../../Hooks/useFeaturedContent";
 import FeaturedContentCarousel from "../../Components/FeaturedContentCarousel/FeaturedContentCarousel";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../../Context/StoreProvider";
+import NetflixSpinner from "../../Components/NetflixSpinner/NetflixSpinner";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const { data, error, isLoading } = useFeaturedContent("all");
-
   const { state } = useContext(Store);
   const { userInfo } = state;
-
 
   useEffect(() => {
     if (!userInfo) {
@@ -23,16 +22,24 @@ const HomePage = () => {
   return (
     <>
       <Billboard type="all"></Billboard>
-      
+
       <div>
         {isLoading ? (
-          <h1 className="text-white">Loading...</h1>
+          <NetflixSpinner />
         ) : error ? (
           <h1 className="text-white">Error...</h1>
-        ) : data && 
-          (data.map((f) => (<FeaturedContentCarousel key={f._id} data={f}></FeaturedContentCarousel>)))
-        }
-        
+        ) : (
+          data && (
+            <>
+              {data.map((f) => (
+                <FeaturedContentCarousel
+                  key={f._id}
+                  data={f}
+                ></FeaturedContentCarousel>
+              ))}
+            </>
+          )
+        )}
       </div>
     </>
   );
